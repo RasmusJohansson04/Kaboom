@@ -246,6 +246,7 @@ function takeDamage(target)
             shake(2)
             addKaboom(enemyPos.x, enemyPos.y)
             isStarted = false
+            drawVictory("PLAYER")
         }
     }
     else if(target == "PLAYER")
@@ -257,8 +258,26 @@ function takeDamage(target)
             shake(2)
             addKaboom(playerPos.x, playerPos.y)
             isStarted = false
+            drawVictory("ENEMY")
         }
     }
+}
+
+function drawVictory(who)
+{
+    add([
+        pos(width() / 2, height() / 2),
+        origin("center"),
+        text("[" + who + "].key HAS WON" ,{
+            size: 64,
+            width: width(),
+            styles: {
+                "key": {
+                    color: rgb(255, 32, 64),
+                },
+            },
+        })
+    ])
 }
 
 function cylinder()
