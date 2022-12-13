@@ -35,6 +35,7 @@ const playerPosC = vec2(width()/2, 400+moveAmount)
 const enemyPos = vec2(width()/2, 200)
 
 let isReloading = false
+let enemyIsReloading = false
 let playerHealth = 1
 let enemyHealth = 5
 
@@ -117,6 +118,27 @@ function playerLean(dir)
     }
 }
 
+loop(1, () => {
+    if(isStarted)
+    {
+        enemyShoot()
+    }
+})
+
+function enemyShoot()
+{
+    if(enemyClip > 0 && !enemyIsCrouching && isStarted)
+    {
+        enemyClip--
+        if(enemyClip == 0 && !enemyIsReloading)
+        {
+            enemyReload()
+        }
+        shake(2)
+        spawnEnemyBullet()
+    }
+}
+
 function enemyLean(dir)
 {
     switch(dir) 
@@ -155,6 +177,20 @@ function spawnPlayerBullet()
         move(UP, bulletSpeed),
         cleanup(),
         "P_BULLET",
+    ])
+}
+
+function spawnEnemyBullet()
+{
+    add([
+        sprite("bullet"),
+        scale(3,3),
+        area(),
+        pos(enemy.pos.x, enemy.pos.y+50),
+        origin("center"),
+        move(DOWN, bulletSpeed),
+        cleanup(),
+        "E_BULLET",
     ])
 }
 
@@ -232,6 +268,14 @@ async function playerReload()
     playerClip = 6
     clip.use(sprite("6"))
     isReloading = false
+}
+
+async function enemyReload()
+{
+    enemyIsReloading = true
+    await wait(2)
+    enemyClip = 6
+    enemyIsReloading = false
 }
 
 onCollide("P_BULLET", "ENEMY", (B, E) => {
