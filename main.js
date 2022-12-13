@@ -50,6 +50,21 @@ let enemyIsCrouching = false
 let playerClip = 6
 let enemyClip = 6
 
+const healthBar = add([
+    rect(width()/2, 30),
+    pos(width()/2, 0),
+    color(250, 50, 50),
+    origin("top"),
+    fixed(),
+    {
+        max: enemyHealth,
+        set(enemyHealth) {
+            this.width = width()/2*enemyHealth/this.max
+            this.flash = true
+        }
+    }
+])
+
 const player = add([
     sprite("player"),
     origin("center"),
@@ -206,6 +221,7 @@ function takeDamage(target)
     if(target == "ENEMY")
     {
         enemyHealth--
+        healthBar.set(enemyHealth)
         if(enemyHealth <= 0)
         {
             destroy(enemy)
