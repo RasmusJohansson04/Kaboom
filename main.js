@@ -244,7 +244,8 @@ function takeDamage(target)
         {
             destroy(enemy)
             shake(2)
-            addKaboom(enemy.pos.x, enemy.pos.y)
+            addKaboom(enemyPos.x, enemyPos.y)
+            isStarted = false
         }
     }
     else if(target == "PLAYER")
@@ -254,7 +255,8 @@ function takeDamage(target)
         {
             destroy(player)
             shake(2)
-            addKaboom(player.pos.x, player.pos.y)
+            addKaboom(playerPos.x, playerPos.y)
+            isStarted = false
         }
     }
 }
