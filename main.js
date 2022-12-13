@@ -4,24 +4,24 @@ kaboom({
     background: [51, 151, 255],
 })
 
-loadSprite("player", "/sprites/player.png")
-loadSprite("playerLeanL", "/sprites/playerLeanLeft.png")
-loadSprite("playerLeanR", "/sprites/playerLeanRight.png")
-loadSprite("playerCrouch", "/sprites/playerCrouch.png")
-loadSprite("playerShoot", "/sprites/playerShoot.png")
-loadSprite("cover", "/sprites/tempCover.png")
+loadSprite("player", "sprites/player.png")
+loadSprite("playerLeanL", "sprites/playerLeanLeft.png")
+loadSprite("playerLeanR", "sprites/playerLeanRight.png")
+loadSprite("playerCrouch", "sprites/playerCrouch.png")
+loadSprite("playerShoot", "sprites/playerShoot.png")
+loadSprite("cover", "sprites/tempCover.png")
 
 
-loadSprite("6", "/sprites/mag6.png")
-loadSprite("5", "/sprites/mag5.png")
-loadSprite("4", "/sprites/mag4.png")
-loadSprite("3", "/sprites/mag3.png")
-loadSprite("2", "/sprites/mag2.png")
-loadSprite("1", "/sprites/mag1.png")
-loadSprite("0", "/sprites/mag0.png")
+loadSprite("6", "sprites/mag6.png")
+loadSprite("5", "sprites/mag5.png")
+loadSprite("4", "sprites/mag4.png")
+loadSprite("3", "sprites/mag3.png")
+loadSprite("2", "sprites/mag2.png")
+loadSprite("1", "sprites/mag1.png")
+loadSprite("0", "sprites/mag0.png")
 
-loadSprite("enemy", "/sprites/enemy.png")
-loadSprite("bullet", "/sprites/bullet.png")
+loadSprite("enemy", "sprites/enemy.png")
+loadSprite("bullet", "sprites/bullet.png")
 
 let isStarted = false
 
