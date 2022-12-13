@@ -135,13 +135,13 @@ function playerLean(dir)
             console.log("Right")
             playerIsCrouching = false
             player.moveTo(playerPosR)
-            break
+            break/*
         case "down":
             player.use(sprite("playerCrouch"))
             console.log("Down")
             playerIsCrouching = true
             player.moveTo(playerPosC)
-            break
+            break*/
         case "up":
             player.use(sprite("playerShoot"))
             console.log("Stand")
@@ -187,13 +187,13 @@ function enemyLean(dir)
             console.log("Right")
             enemy.moveTo(enemyPosR)
             enemyIsCrouching = false
-            break
+            break/*
         case 2: //Down
             console.log("Down")
             enemy.moveTo(enemyPosC)
             enemyIsCrouching = true
-            break
-        case 3: //Stand
+            break*/
+        case 2: //Stand
             console.log("Stand")
             enemy.moveTo(enemyPos)
             enemyIsCrouching = false
@@ -203,7 +203,7 @@ function enemyLean(dir)
 
 function startEnemy()
 {
-    enemyLean(Math.floor(Math.random() * 4))
+    enemyLean(Math.floor(Math.random() * 3))
 }
 
 function spawnPlayerBullet()
