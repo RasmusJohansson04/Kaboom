@@ -27,12 +27,17 @@ let isStarted = false
 const moveAmount = 75
 const bulletSpeed = 1500
 
-const playerPos = vec2(width()/2, 400)
-const playerPosL = vec2(width()/2-moveAmount, 400)
-const playerPosR = vec2(width()/2+moveAmount, 400)
-const playerPosC = vec2(width()/2, 400+moveAmount)
+const playerY = 500
+const playerPos = vec2(width()/2, playerY)
+const playerPosL = vec2(width()/2-moveAmount, playerY)
+const playerPosR = vec2(width()/2+moveAmount, playerY)
+const playerPosC = vec2(width()/2, playerY+moveAmount)
 
-const enemyPos = vec2(width()/2, 200)
+const enemyY = 100
+const enemyPos = vec2(width()/2, enemyY)
+const enemyPosL = vec2(width()/2-moveAmount, enemyY)
+const enemyPosR = vec2(width()/2+moveAmount, enemyY)
+const enemyPosC = vec2(width()/2, enemyY+moveAmount)
 
 let isReloading = false
 let enemyIsReloading = false
@@ -119,9 +124,10 @@ function playerLean(dir)
 }
 
 loop(1, () => {
-    if(isStarted)
+    if(isStarted && enemyHealth > 0)
     {
         enemyShoot()
+        enemyLean(Math.floor(Math.random() * 4))
     }
 })
 
@@ -145,14 +151,15 @@ function enemyLean(dir)
     {
         case 0: //Left
             console.log("Left")
-            enemy.move(-moveAmount, 0)
+            enemy.moveTo(enemyPosL)
             break
         case 1: //Right
             console.log("Right")
-            enemy.move(moveAmount, 0)
+            enemy.moveTo(enemyPosR)
             break
         case 2: //Down
             console.log("Down")
+            enemy.moveTo(enemyPosC)
             break
         case 3: //Stand
             console.log("Stand")
@@ -278,10 +285,16 @@ async function enemyReload()
     enemyIsReloading = false
 }
 
-onCollide("P_BULLET", "ENEMY", (B, E) => {
+onCollide("P_BULLET", "ENEMY", (B) => {
     destroy(B),
     shake(1),
     takeDamage("ENEMY")
+})
+
+onCollide("E_BULLET", "PLAYER", (B) => {
+    destroy(B),
+    shake(1),
+    takeDamage("PLAYER")
 })
 
 onKeyPress("left", () => {
