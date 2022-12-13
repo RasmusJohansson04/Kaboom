@@ -31,13 +31,13 @@ const playerY = 500
 const playerPos = vec2(width()/2, playerY)
 const playerPosL = vec2(width()/2-moveAmount, playerY)
 const playerPosR = vec2(width()/2+moveAmount, playerY)
-const playerPosC = vec2(width()/2, playerY+moveAmount)
+const playerPosC = vec2(width()/2, playerY+moveAmount/2)
 
 const enemyY = 100
 const enemyPos = vec2(width()/2, enemyY)
 const enemyPosL = vec2(width()/2-moveAmount, enemyY)
 const enemyPosR = vec2(width()/2+moveAmount, enemyY)
-const enemyPosC = vec2(width()/2, enemyY+moveAmount)
+const enemyPosC = vec2(width()/2, enemyY-moveAmount/2)
 
 let isReloading = false
 let enemyIsReloading = false
@@ -51,7 +51,7 @@ let playerClip = 6
 let enemyClip = 6
 
 const healthBar = add([
-    rect(width()/2, 30),
+    rect(width(), 10),
     pos(width()/2, 0),
     color(250, 50, 50),
     origin("top"),
@@ -59,7 +59,7 @@ const healthBar = add([
     {
         max: enemyHealth,
         set(enemyHealth) {
-            this.width = width()/2*enemyHealth/this.max
+            this.width = width()*enemyHealth/this.max
             this.flash = true
         }
     }
@@ -167,18 +167,22 @@ function enemyLean(dir)
         case 0: //Left
             console.log("Left")
             enemy.moveTo(enemyPosL)
+            enemyIsCrouching = false
             break
         case 1: //Right
             console.log("Right")
             enemy.moveTo(enemyPosR)
+            enemyIsCrouching = false
             break
         case 2: //Down
             console.log("Down")
             enemy.moveTo(enemyPosC)
+            enemyIsCrouching = true
             break
         case 3: //Stand
             console.log("Stand")
             enemy.moveTo(enemyPos)
+            enemyIsCrouching = false
             break
     }
 }
@@ -302,15 +306,21 @@ async function enemyReload()
 }
 
 onCollide("P_BULLET", "ENEMY", (B) => {
-    destroy(B),
-    shake(1),
-    takeDamage("ENEMY")
+    if(!enemyIsCrouching)
+    {
+        destroy(B),
+        shake(1),
+        takeDamage("ENEMY")
+    }
 })
 
 onCollide("E_BULLET", "PLAYER", (B) => {
-    destroy(B),
-    shake(1),
-    takeDamage("PLAYER")
+    if(!playerIsCrouching)
+    {    
+        destroy(B),
+        shake(1),
+        takeDamage("PLAYER")
+    }
 })
 
 onKeyPress("left", () => {
