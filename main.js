@@ -9,6 +9,7 @@ loadSprite("playerLeanL", "/sprites/playerLeanLeft.png")
 loadSprite("playerLeanR", "/sprites/playerLeanRight.png")
 loadSprite("playerCrouch", "/sprites/playerCrouch.png")
 loadSprite("playerShoot", "/sprites/playerShoot.png")
+loadSprite("cover", "/sprites/tempCover.png")
 
 
 loadSprite("6", "/sprites/mag6.png")
@@ -49,6 +50,9 @@ let enemyIsCrouching = false
 
 let playerClip = 6
 let enemyClip = 6
+
+//addCover(playerPos, -75)
+//addCover(enemyPos, 50)
 
 const healthBar = add([
     rect(width(), 10),
@@ -103,6 +107,16 @@ const drawText = add([
 		},
     })
 ])
+
+function addCover(position, offset)
+{
+    add([
+        sprite("cover"),
+        origin("center"),
+        pos(position.x, position.y + offset),
+        scale(3,3),
+    ])
+}
 
 function playerLean(dir)
 {
