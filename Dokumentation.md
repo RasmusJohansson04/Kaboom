@@ -19,3 +19,6 @@ Har fixat fungerande movement och shooting för spelaren. Nästa gång ska jag f
 
 ## Tisdag - v.50
 Har fixat klart fiendens funktioner och fungerar nu som motståndare. Vissa variabler kan behöva justeras för att göra spelet bättre men det mesta är i princip klart.
+
+## Fredag - v.50
+Har börjat på ett intro åt spelet, har även jobbat på fienden så att han blir lite bättre på att träffa spelaren och så har jag lagt till en healthbar för spelaren också
