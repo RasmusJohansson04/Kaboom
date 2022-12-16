@@ -42,7 +42,7 @@ const enemyPosC = vec2(width()/2, enemyY-moveAmount/2)
 
 let isReloading = false
 let enemyIsReloading = false
-let playerHealth = 1
+let playerHealth = 3
 let enemyHealth = 5
 
 let playerIsCrouching = false
@@ -66,6 +66,21 @@ const healthBar = add([
         max: enemyHealth,
         set(enemyHealth) {
             this.width = width()*enemyHealth/this.max
+            this.flash = true
+        }
+    }
+])
+
+const playerHealthBar = add([
+    rect(width(), 10),
+    pos(width()/2, height()-10),
+    color(250, 50, 50),
+    origin("top"),
+    fixed(),
+    {
+        max: playerHealth,
+        set(playerHealth) {
+            this.width = width()*playerHealth/this.max
             this.flash = true
         }
     }
@@ -271,6 +286,7 @@ function takeDamage(target)
     else if(target == "PLAYER")
     {
         playerHealth--
+        playerHealthBar.set(playerHealth)
         if(playerHealth <= 0)
         {
             destroy(player)
