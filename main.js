@@ -253,7 +253,7 @@ scene("battle", () => {
             healthBar.set(enemyHealth)
             if (enemyHealth <= 0) {
                 destroy(enemy)
-                shake(2)
+                shake(20)
                 addKaboom(enemyPos.x, enemyPos.y)
                 isStarted = false
                 drawVictory("PLAYER")
@@ -267,7 +267,7 @@ scene("battle", () => {
             playerHealthBar.set(playerHealth)
             if (playerHealth <= 0) {
                 destroy(player)
-                shake(2)
+                shake(20)
                 addKaboom(playerPos.x, playerPos.y)
                 isStarted = false
                 drawVictory("ENEMY")
@@ -400,4 +400,42 @@ scene("battle", () => {
     })  
 })
 
-go("battle")
+scene("intro", () => {
+    const intro1 = add([
+        pos(width() / 2, height() / 2),
+        origin("center"),
+        text("[RED].key", {
+            size: 64,
+            width: width(),
+            styles: {
+                "key": {
+                    color: rgb(255, 32, 64),
+                },
+            },
+        })
+    ])
+    wait(1, () => {
+        destroy(intro1)
+        const intro2 = add([
+            pos(width() / 2, height() / 2),
+            origin("center"),
+            text("LEAD", {
+                size: 64,
+                width: width(),
+                styles: {
+                    "key": {
+                        color: rgb(255, 32, 64),
+                    },
+                },
+            })
+        ])
+        wait(1, () => {
+            destroy(intro2)
+        })
+        wait(1, ()=> {
+            go("battle")
+        })
+    })
+})
+
+go("intro")
