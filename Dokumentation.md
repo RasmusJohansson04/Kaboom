@@ -17,5 +17,5 @@ Nästa gång ska jag fortsätta implementera spel funktionerna.
 ## Fredag - v.49
 Har fixat fungerande movement och shooting för spelaren. Nästa gång ska jag fixa fiendens kontroll. 
 
-# Tisdag - v.50
+## Tisdag - v.50
 Har fixat klart fiendens funktioner och fungerar nu som motståndare. Vissa variabler kan behöva justeras för att göra spelet bättre men det mesta är i princip klart.
