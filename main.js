@@ -51,6 +51,8 @@ let enemyIsCrouching = false
 let playerClip = 6
 let enemyClip = 6
 
+const reactionTime = .8
+
 //addCover(playerPos, -75)
 //addCover(enemyPos, 50)
 
@@ -152,11 +154,28 @@ function playerLean(dir)
     }
 }
 
-loop(1, () => {
+loop(reactionTime, () => {
     if(isStarted && enemyHealth > 0)
     {
         enemyShoot()
-        enemyLean(Math.floor(Math.random() * 4))
+        if(Math.floor(Math.random() * 4) == 1)
+        {
+            switch(player.pos.x)
+            {
+                case playerPosL.x:
+                    enemyLean(0)
+                    break
+                case playerPos.x:
+                    enemyLean(1)
+                    break
+                case playerPosR.x:
+                    enemyLean(2)
+                    break
+            }
+        }
+        else {
+            enemyLean(Math.floor(Math.random() * 4))
+        }
     }
 })
 
@@ -203,7 +222,7 @@ function enemyLean(dir)
 
 function startEnemy()
 {
-    enemyLean(Math.floor(Math.random() * 3))
+    enemyLean(Math.floor(Math.random() * 2))
 }
 
 function spawnPlayerBullet()
