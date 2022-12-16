@@ -44,6 +44,7 @@ scene("battle", () => {
 
     let isStarted = false
 
+    let cooldown = false
     let isReloading = false
     let enemyIsReloading = false
     let playerHealth = 3
@@ -320,8 +321,9 @@ scene("battle", () => {
     }
 
     function playerShoot() {
-        if (playerClip > 0 && !playerIsCrouching && isStarted) {
+        if (playerClip > 0 && !playerIsCrouching && isStarted && !cooldown) {
             playerClip--
+            playerCooldown()
             if (playerClip == 0 && !isReloading) {
                 playerReload()
             }
@@ -329,6 +331,12 @@ scene("battle", () => {
             shake(2)
             spawnPlayerBullet()
         }
+    }
+
+    async function playerCooldown() {
+        cooldown = true
+        await wait(.5)
+        cooldown = false
     }
 
     async function playerReload() {
