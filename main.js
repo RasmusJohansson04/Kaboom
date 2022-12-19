@@ -20,8 +20,12 @@ loadSprite("2", "sprites/mag2.png")
 loadSprite("1", "sprites/mag1.png")
 loadSprite("0", "sprites/mag0.png")
 
-loadSprite("enemy", "sprites/enemy.png")
+loadSprite("enemy", "sprites/enemyShoot.png")
 loadSprite("bullet", "sprites/bullet.png")
+
+loadSprite("x", "sprites/xBtn.png")
+loadSprite("l", "sprites/lBtn.png")
+loadSprite("r", "sprites/rBtn.png")
 
 const moveAmount = 75
 const bulletSpeed = 1500
