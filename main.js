@@ -64,7 +64,7 @@ scene("battle", () => {
         rect(width(), 10),
         pos(width() / 2, 0),
         color(250, 50, 50),
-        origin("top"),
+       origin("top"),
         fixed(),
         {
             max: enemyHealth,
@@ -79,7 +79,7 @@ scene("battle", () => {
         rect(width(), 10),
         pos(width() / 2, height() - 10),
         color(250, 50, 50),
-        origin("top"),
+       origin("top"),
         fixed(),
         {
             max: playerHealth,
@@ -92,7 +92,7 @@ scene("battle", () => {
 
     const player = add([
         sprite("player"),
-        origin("center"),
+       origin("center"),
         pos(playerPos),
         scale(3, 3),
         area(),
@@ -101,7 +101,7 @@ scene("battle", () => {
 
     const enemy = add([
         sprite("enemy"),
-        origin("center"),
+       origin("center"),
         pos(enemyPos),
         scale(3, 3),
         area(),
@@ -110,14 +110,14 @@ scene("battle", () => {
 
     const clip = add([
         sprite("6"),
-        origin("center"),
+       origin("center"),
         pos(width() - 100, height() - 100),
         scale(3, 3),
     ])
 
     const drawText = add([
         pos(width() / 2, height() / 2),
-        origin("center"),
+       origin("center"),
         text("Press [SPACE].key to draw", {
             size: 64,
             width: width(),
@@ -132,7 +132,7 @@ scene("battle", () => {
     function addCover(position, offset) {
         add([
             sprite("cover"),
-            origin("center"),
+           origin("center"),
             pos(position.x, position.y + offset),
             scale(3, 3),
         ])
@@ -231,7 +231,7 @@ scene("battle", () => {
             scale(3, 3),
             area(),
             pos(player.pos.x, player.pos.y - 50),
-            origin("center"),
+           origin("center"),
             move(UP, bulletSpeed),
             cleanup(),
             "P_BULLET",
@@ -244,7 +244,7 @@ scene("battle", () => {
             scale(3, 3),
             area(),
             pos(enemy.pos.x, enemy.pos.y + 50),
-            origin("center"),
+           origin("center"),
             move(DOWN, bulletSpeed),
             cleanup(),
             "E_BULLET",
@@ -285,7 +285,7 @@ scene("battle", () => {
     function drawVictory(who) {
         add([
             pos(width() / 2, height() / 2),
-            origin("center"),
+           origin("center"),
             text("[" + who + "].key HAS WON", {
                 size: 64,
                 width: width(),
@@ -407,7 +407,7 @@ scene("battle", () => {
 scene("intro", () => {
     const intro1 = add([
         pos(width() / 2, height() / 2),
-        origin("center"),
+       origin("center"),
         text("[RED].key", {
             size: 64,
             width: width(),
@@ -422,7 +422,7 @@ scene("intro", () => {
         destroy(intro1)
         const intro2 = add([
             pos(width() / 2, height() / 2),
-            origin("center"),
+           origin("center"),
             text("LEAD", {
                 size: 64,
                 width: width(),
